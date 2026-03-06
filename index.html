@@ -490,12 +490,6 @@ footer{
 
     <div class="hdr-sub">
       <span class="hdr-role">Senior User Experience Designer, Platform — Government of Alberta</span>
-      <span class="hdr-div">▸</span>
-      <div class="ticker-wrap">
-        <span class="ticker">
-          SYSTEMS THINKING &nbsp;·&nbsp; UX DESIGN &nbsp;·&nbsp; SERVICE DELIVERY &nbsp;·&nbsp; FIGMA &nbsp;·&nbsp; INTERACTION &nbsp;·&nbsp; SCALE &nbsp;·&nbsp; PUBLIC POLICY &nbsp;·&nbsp; AUTODESK ALUMNI &nbsp;·&nbsp; PLATFORMS &nbsp;·&nbsp; SYSTEMS THINKING &nbsp;·&nbsp; UX DESIGN &nbsp;·&nbsp;
-        </span>
-      </div>
     </div>
   </header>
 
@@ -514,7 +508,6 @@ footer{
         <div class="tag">Interaction</div>
         <div class="tag">Service Design</div>
         <div class="tag">Scale</div>
-        <div class="tag">Public Policy</div>
       </div>
     </div>
 
@@ -523,31 +516,7 @@ footer{
     <!-- TAPE STRIP -->
     <div class="tape-strip" style="animation:none;transform:none;"></div>
 
-    <!-- PHILOSOPHY PULL QUOTE -->
-    <div class="zone">
-      <div class="zlabel">PHILOSOPHY</div>
-      <div class="pull-quote">
-        HOW SYSTEMS<br>BEHAVE<br>& SCALE.
-      </div>
-      <div class="pull-attr">Design Approach · 6 Years Practice</div>
-    </div>
 
-    <!-- EXPERIENCE -->
-    <div class="zone w2">
-      <div class="zlabel">EXPERIENCE</div>
-      <div class="exp-list">
-        <div class="exp-item">
-          <div class="exp-org">Ministry of Technology & Innovation</div>
-          <div class="exp-years">2024 — NOW</div>
-          <div class="exp-role">Senior User Experience Designer, Platform · Govt. of Alberta</div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-org">Autodesk</div>
-          <div class="exp-years">PREV.</div>
-          <div class="exp-role">Senior User Experience Designer</div>
-        </div>
-      </div>
-    </div>
 
     <!-- DIVIDER -->
     <div class="div-bar">
@@ -592,9 +561,9 @@ footer{
       <div class="contact-head">SEND A<br>MESSAGE.</div>
       <div class="contact-sub">Not open to new roles right now — but always happy to connect.</div>
       <div class="clinks">
-        <a class="clink" href="/cdn-cgi/l/email-protection#ed829f82818c898882818c9a8c8188ad8a808c8481c38e8280">
+        <a class="clink" href="/cdn-cgi/l/email-protection#7a150815161b1e1f15161b0d1b161f3a1d171b131654191517">
           <span class="cplatform">Email</span>
-          <span class="cval"><span class="__cf_email__" data-cfemail="0c637e63606d686963606d7b6d60694c6b616d6560226f6361">[email&#160;protected]</span></span>
+          <span class="cval"><span class="__cf_email__" data-cfemail="f69984999a979293999a9781979a93b6919b979f9ad895999b">[email&#160;protected]</span></span>
           <span class="csub">Primary contact</span>
         </a>
       </div>
@@ -629,7 +598,7 @@ footer{
 
 </div><!-- /page -->
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* GRAIN */
 const canvas = document.getElementById('grain');
 const ctx = canvas.getContext('2d');
@@ -658,4 +627,53 @@ function tick(){
 setInterval(tick, 1000); tick();
 
 /* TAPE COUNTER */
-let
+let s=0;
+setInterval(()=>{
+  s++;
+  const h=Math.floor(s/3600), m=Math.floor((s%3600)/60), sec=s%60;
+  document.getElementById('tapeHUD').textContent = `SP  ${h}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+},1000);
+
+/* OCCASIONAL HORIZONTAL SHAKE */
+setInterval(()=>{
+  if(Math.random()<0.12){
+    const p = document.querySelector('.page');
+    p.style.transform = `translateX(${(Math.random()-.5)*3}px)`;
+    setTimeout(()=>p.style.transform='', 70);
+  }
+},3200);
+
+/* MOUSE MOVE — FEED DISTORTION */
+let moveTimeout;
+let lastX = 0, lastY = 0;
+const page = document.querySelector('.page');
+const glitchTear = document.querySelector('.glitch-tear');
+
+document.addEventListener('mousemove', (e) => {
+  const dx = Math.abs(e.clientX - lastX);
+  const dy = Math.abs(e.clientY - lastY);
+  const speed = dx + dy;
+  lastX = e.clientX; lastY = e.clientY;
+
+  // map mouse X to slight horizontal skew — like tuning a dial
+  const xNorm = (e.clientX / window.innerWidth) - 0.5; // -0.5 to 0.5
+  const yNorm = (e.clientY / window.innerHeight) - 0.5;
+
+  // subtle brightness/contrast shift based on position
+  const brightness = 1 + (yNorm * 0.06);
+  const contrast = 1 + (xNorm * 0.08);
+  const hueShift = xNorm * 6;
+  page.style.filter = `brightness(${brightness}) contrast(${contrast}) hue-rotate(${hueShift}deg)`;
+
+  // fast movement = signal tear
+  if(speed > 40){
+    glitchTear.style.opacity = '0.7';
+    glitchTear.style.top = e.clientY + 'px';
+    glitchTear.style.height = Math.min(speed * 0.3, 12) + 'px';
+    clearTimeout(moveTimeout);
+    moveTimeout = setTimeout(()=>{ glitchTear.style.opacity = '0'; }, 120);
+  }
+
+  // very fast = full chromatic shake
+  if(speed > 80){
+    page.st
