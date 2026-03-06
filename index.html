@@ -343,7 +343,11 @@ header{
   cursor:pointer;text-decoration:none;color:inherit;
   transition:all .1s;background:var(--bg);
 }
-.clink:hover{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+.clink-spotify:hover{background:#1DB954 !important;border-color:#1DB954 !important;}
+.clink-spotify:hover .cplatform,
+.clink-spotify:hover .cval,
+.clink-spotify:hover .csub{color:#fff !important;}
+
 .clink:hover .csub{color:rgba(234,230,218,.45);}
 .clink:hover .cplatform{color:rgba(234,230,218,.45);}
 .cplatform{font-size:8px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;width:60px;flex-shrink:0;}
@@ -498,8 +502,8 @@ footer{
   <!-- GRID -->
   <div class="zine-grid">
 
-    <!-- ABOUT (wide) + STATUS -->
-    <div class="zone w2">
+    <!-- ABOUT -->
+    <div class="zone w3">
       <div class="zlabel">ABOUT</div>
       <div class="about-body" style="margin-bottom:14px;">
         With <em>6 years</em> of multidisciplinary design experience, I connect <em>people, products and processes</em> by focusing on how systems behave and scale. Currently designing at the <em>Ministry of Technology & Innovation, Government of Alberta.</em> Previously at <em>Autodesk.</em>
@@ -514,27 +518,7 @@ footer{
       </div>
     </div>
 
-    <div class="zone">
-      <div class="zlabel">STATUS</div>
-      <div class="status-rows">
-        <div class="srow">
-          <span class="skey">Availability</span>
-          <span class="sval closed">● NOT OPEN TO NEW OPP.</span>
-        </div>
-        <div class="srow">
-          <span class="skey">Location</span>
-          <span class="sval">Canada</span>
-        </div>
-        <div class="srow">
-          <span class="skey">Current Role</span>
-          <span class="sval">Govt. of Alberta</span>
-        </div>
-        <div class="srow">
-          <span class="skey">Portfolio</span>
-          <span class="sval note">2026 PORTFOLIO<br>BEING CURATED</span>
-        </div>
-      </div>
-    </div>
+
 
     <!-- TAPE STRIP -->
     <div class="tape-strip" style="animation:none;transform:none;"></div>
@@ -608,9 +592,9 @@ footer{
       <div class="contact-head">SEND A<br>MESSAGE.</div>
       <div class="contact-sub">Not open to new roles right now — but always happy to connect.</div>
       <div class="clinks">
-        <a class="clink" href="mailto:oroladeolawale@gmail.com">
+        <a class="clink" href="/cdn-cgi/l/email-protection#ed829f82818c898882818c9a8c8188ad8a808c8481c38e8280">
           <span class="cplatform">Email</span>
-          <span class="cval">oroladeolawale@gmail.com</span>
+          <span class="cval"><span class="__cf_email__" data-cfemail="0c637e63606d686963606d7b6d60694c6b616d6560226f6361">[email&#160;protected]</span></span>
           <span class="csub">Primary contact</span>
         </a>
       </div>
@@ -621,7 +605,7 @@ footer{
       <div class="zlabel">2026 FOLIO</div>
       <div class="pull-quote" style="font-size:28px;margin-bottom:10px;">BEING<br>CURATED.</div>
       <div class="about-body" style="margin-bottom:12px;">The 2026 portfolio is currently being put together. In the meantime —</div>
-      <a class="clink" href="https://open.spotify.com/playlist/0BK9k0yZ85rygBdIbdEYz1" target="_blank" style="text-decoration:none;">
+      <a class="clink clink-spotify" href="https://open.spotify.com/playlist/0BK9k0yZ85rygBdIbdEYz1" target="_blank" style="text-decoration:none;">
         <span class="cplatform">Spotify</span>
         <span class="cval">Gym Playlist ᯤ</span>
         <span class="csub">Something to listen to</span>
@@ -645,7 +629,7 @@ footer{
 
 </div><!-- /page -->
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* GRAIN */
 const canvas = document.getElementById('grain');
 const ctx = canvas.getContext('2d');
@@ -674,11 +658,4 @@ function tick(){
 setInterval(tick, 1000); tick();
 
 /* TAPE COUNTER */
-let s=0;
-setInterval(()=>{
-  s++;
-  const h=Math.floor(s/3600), m=Math.floor((s%3600)/60), sec=s%60;
-  document.getElementById('tapeHUD').textContent = `SP  ${h}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
-},1000);
-
-/* OCCASIONAL HORIZONT
+let
